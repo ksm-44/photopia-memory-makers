@@ -20,7 +20,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="font-medium hover:text-sunset-500 transition-colors">Home</Link>
             <Link to="/explore" className="font-medium hover:text-sunset-500 transition-colors">Explore</Link>
-            <Link to="/photographers" className="font-medium hover:text-sunset-500 transition-colors">Photographers</Link>
+            <Link to="/photographer/1" className="font-medium hover:text-sunset-500 transition-colors">Photographers</Link>
             <Link to="/how-it-works" className="font-medium hover:text-sunset-500 transition-colors">How It Works</Link>
           </div>
 
@@ -69,7 +69,7 @@ const Navbar = () => {
               Explore
             </Link>
             <Link 
-              to="/photographers" 
+              to="/photographer/1" 
               className="block p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               onClick={() => setIsOpen(false)}
             >
@@ -82,6 +82,16 @@ const Navbar = () => {
             >
               How It Works
             </Link>
+            <div className="mt-2 space-y-2">
+              <Link
+                to="/photographer-dashboard"
+                className="block p-2 rounded-md bg-gray-100 dark:bg-gray-800 text-sunset-500"
+                onClick={() => setIsOpen(false)}
+              >
+                <User className="h-4 w-4 inline mr-2" />
+                Photographer Dashboard (Demo)
+              </Link>
+            </div>
             <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
               <Button variant="outline" className="w-full mb-2">Sign In</Button>
               <Button className="w-full bg-sunset-500 hover:bg-sunset-600">Join Now</Button>
