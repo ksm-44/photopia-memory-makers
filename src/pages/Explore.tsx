@@ -12,64 +12,70 @@ import { Filter, MapPin, Camera, Calendar, SlidersHorizontal } from 'lucide-reac
 // Mock data for photographers (would come from an API in a real application)
 const mockPhotographers = [
   {
-    id: 1,
+    id: "1",
     name: "Alex Morgan",
     location: "Paris, France",
+    specialty: "Portrait, Street, Architecture",
     rating: 4.9,
     reviewCount: 127,
-    specialties: ["Portrait", "Street", "Architecture"],
     price: 85,
     image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&q=80",
+    languages: ["English", "French"],
   },
   {
-    id: 2,
+    id: "2",
     name: "Maya Rodriguez",
     location: "Bali, Indonesia",
+    specialty: "Landscape, Beach, Social Media",
     rating: 4.8,
     reviewCount: 94,
-    specialties: ["Landscape", "Beach", "Social Media"],
     price: 75,
     image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?auto=format&fit=crop&q=80",
+    languages: ["English", "Indonesian"],
   },
   {
-    id: 3,
+    id: "3",
     name: "Jason Kim",
     location: "Tokyo, Japan",
+    specialty: "Urban, Night, Fashion",
     rating: 4.7,
     reviewCount: 86,
-    specialties: ["Urban", "Night", "Fashion"],
     price: 90,
     image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80",
+    languages: ["English", "Japanese"],
   },
   {
-    id: 4,
+    id: "4",
     name: "Sophia Chen",
     location: "Barcelona, Spain",
+    specialty: "Portrait, Couple, Events",
     rating: 4.9,
     reviewCount: 112,
-    specialties: ["Portrait", "Couple", "Events"],
     price: 80,
     image: "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?auto=format&fit=crop&q=80",
+    languages: ["English", "Spanish"],
   },
   {
-    id: 5,
+    id: "5",
     name: "David Wilson",
     location: "New York, USA",
+    specialty: "Street, Urban, Reels",
     rating: 4.8,
     reviewCount: 78,
-    specialties: ["Street", "Urban", "Reels"],
     price: 95,
     image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80",
+    languages: ["English"],
   },
   {
-    id: 6,
+    id: "6",
     name: "Emma Johnson",
     location: "London, UK",
+    specialty: "Fashion, Portrait, Social Media",
     rating: 4.6,
     reviewCount: 65,
-    specialties: ["Fashion", "Portrait", "Social Media"],
     price: 88,
     image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80",
+    languages: ["English"],
   }
 ];
 
@@ -97,7 +103,7 @@ const Explore = () => {
       photographer.price <= priceRange[1];
     
     const matchesSpecialties = selectedSpecialties.length === 0 || 
-      selectedSpecialties.some(s => photographer.specialties.includes(s));
+      selectedSpecialties.some(s => photographer.specialty.includes(s));
     
     return matchesLocation && matchesPrice && matchesSpecialties;
   });
@@ -215,13 +221,15 @@ const Explore = () => {
                     {filteredPhotographers.map(photographer => (
                       <PhotographerCard
                         key={photographer.id}
+                        id={photographer.id}
                         name={photographer.name}
                         location={photographer.location}
+                        specialty={photographer.specialty}
                         rating={photographer.rating}
                         reviewCount={photographer.reviewCount}
-                        specialties={photographer.specialties}
                         price={photographer.price}
                         image={photographer.image}
+                        languages={photographer.languages}
                       />
                     ))}
                   </div>

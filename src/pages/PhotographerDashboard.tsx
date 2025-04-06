@@ -5,7 +5,7 @@ import Footer from '../components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Calendar as CalendarIcon, Clock, Camera, UserCheck, Star, Banknote, ChevronRight, ChevronDown, Users, TrendingUp, Settings, MessageSquare, Bell, Calendar } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Camera, UserCheck, Star, Banknote, ChevronRight, ChevronDown, Users, TrendingUp, Settings, MessageSquare, Bell, Calendar, MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 // Mock data for the dashboard
