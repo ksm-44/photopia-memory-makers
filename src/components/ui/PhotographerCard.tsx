@@ -32,38 +32,43 @@ const PhotographerCard = ({
 
   return (
     <div 
-      className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg ${
-        isFeatured ? 'border-2 border-sunset-500' : 'border border-gray-200 dark:border-gray-700'
+      className={`group elegant-card transform transition-all duration-500 hover:-translate-y-2 ${
+        isFeatured ? 'border-l-4 border-l-accent' : ''
       }`}
     >
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {/* Photographer image */}
         <img
           src={image}
           alt={`${name} - photographer`}
-          className="w-full h-52 object-cover"
+          className="w-full h-60 object-cover transition-transform duration-700 group-hover:scale-105"
         />
         
         {/* Favorite button */}
         <button
           onClick={() => setIsFavorite(!isFavorite)}
-          className="absolute top-3 right-3 p-2 bg-white/80 dark:bg-gray-800/80 rounded-full hover:bg-white dark:hover:bg-gray-700 transition-colors"
+          className="absolute top-3 right-3 p-2 bg-white/80 dark:bg-gray-800/80 rounded-full hover:bg-white dark:hover:bg-gray-700 transition-colors shadow-sm"
           aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
-          <Heart className={`h-5 w-5 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600 dark:text-gray-300'}`} />
+          <Heart className={`h-5 w-5 transition-colors ${isFavorite ? 'fill-accent text-accent' : 'text-gray-600 dark:text-gray-300'}`} />
         </button>
         
         {/* Featured badge */}
         {isFeatured && (
-          <div className="absolute top-3 left-3 bg-sunset-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+          <div className="absolute top-3 left-3 bg-accent text-white px-3 py-1 rounded-full text-xs font-medium">
             Featured
           </div>
         )}
+
+        {/* Price badge */}
+        <div className="absolute bottom-3 left-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-primary dark:text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+          ${price}/hr
+        </div>
       </div>
       
-      <div className="p-5">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="font-display text-lg font-semibold">{name}</h3>
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-3">
+          <h3 className="font-display text-xl font-medium">{name}</h3>
           <div className="flex items-center">
             <Star className="h-4 w-4 text-yellow-400 fill-yellow-400 mr-1" />
             <span className="text-sm font-medium">{rating}</span>
@@ -72,25 +77,24 @@ const PhotographerCard = ({
         </div>
         
         <div className="flex items-center text-gray-600 dark:text-gray-300 mb-2">
-          <MapPin className="h-4 w-4 mr-1" />
+          <MapPin className="h-4 w-4 mr-1.5 flex-shrink-0" />
           <span className="text-sm">{location}</span>
         </div>
         
-        <div className="flex items-center text-gray-600 dark:text-gray-300 mb-3">
-          <Globe className="h-4 w-4 mr-1" />
-          <div className="flex flex-wrap gap-1">
-            {languages.map((lang, index) => (
-              <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
-                {lang}
-              </span>
-            ))}
-          </div>
-        </div>
-        
-        <div className="bg-gray-50 dark:bg-gray-700/50 px-3 py-2 rounded-md mb-4">
-          <div className="text-sm">Specialty: <span className="font-medium">{specialty}</span></div>
-          <div className="text-sm mt-1">
-            Starting at <span className="font-semibold text-sunset-600 dark:text-sunset-400">${price}/hr</span>
+        <div className="mb-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <span className="font-medium">Specialty:</span> {specialty}
+          </p>
+          
+          <div className="flex items-center text-gray-600 dark:text-gray-300">
+            <Globe className="h-4 w-4 mr-1.5 flex-shrink-0" />
+            <div className="flex flex-wrap gap-1">
+              {languages.map((lang, index) => (
+                <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
+                  {lang}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
         
@@ -98,14 +102,14 @@ const PhotographerCard = ({
           <Button 
             variant="outline" 
             size="sm"
-            className="flex-1 border-gray-300 dark:border-gray-600"
+            className="flex-1 border-gray-200 hover:border-accent hover:text-accent dark:border-gray-600"
           >
             <MessageSquare className="h-4 w-4 mr-2" />
             Contact
           </Button>
           <Button 
             size="sm"
-            className="flex-1 bg-sunset-500 hover:bg-sunset-600"
+            className="flex-1 bg-accent hover:bg-accent/90 text-white"
           >
             Book Now
           </Button>

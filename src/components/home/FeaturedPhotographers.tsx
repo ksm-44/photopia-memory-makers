@@ -1,7 +1,9 @@
 
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll';
 import PhotographerCard from '../ui/PhotographerCard';
+import SectionTitle from '../ui/SectionTitle';
 
 // Sample data for featured photographers
 const photographerData = [
@@ -56,29 +58,41 @@ const photographerData = [
 ];
 
 const FeaturedPhotographers = () => {
+  const cardRef1 = useAnimateOnScroll<HTMLDivElement>();
+  const cardRef2 = useAnimateOnScroll<HTMLDivElement>({ threshold: 0.05 });
+  const cardRef3 = useAnimateOnScroll<HTMLDivElement>({ threshold: 0.05 });
+  const cardRef4 = useAnimateOnScroll<HTMLDivElement>({ threshold: 0.05 });
+  
+  const refs = [cardRef1, cardRef2, cardRef3, cardRef4];
+
   return (
-    <section className="section-padding bg-gray-50 dark:bg-gray-900">
+    <section className="section-padding bg-primary/[0.01] relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-y-0 left-0 w-1/2 bg-accent/[0.03] rounded-r-3xl"></div>
+      </div>
+      
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <div>
-            <p className="text-sunset-600 font-medium mb-2">Handpicked Professionals</p>
-            <h2 className="heading-2 mb-3">Featured Photographers</h2>
-            <p className="body-text max-w-2xl">
-              Discover our community of talented photographers ready to capture your perfect travel moments
-            </p>
-          </div>
-          <Button variant="ghost" className="mt-4 md:mt-0 text-sunset-600 hover:text-sunset-700">
-            View All <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+        <SectionTitle 
+          subtitle="Handpicked Professionals"
+          title="Featured Photographers"
+          description="Discover our community of talented photographers ready to capture your perfect travel moments"
+        />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {photographerData.map((photographer, index) => (
+            <div key={photographer.id} ref={refs[index]} style={{ animationDelay: `${index * 0.15}s` }}>
+              <PhotographerCard {...photographer} />
+            </div>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {photographerData.map((photographer) => (
-            <PhotographerCard 
-              key={photographer.id}
-              {...photographer}
-            />
-          ))}
+        <div className="text-center">
+          <Button 
+            variant="outline" 
+            className="px-8 py-6 text-base border-gray-200 hover:border-accent hover:text-accent"
+          >
+            View All Photographers <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
     </section>
